@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
+    "publish": "docker buildx build --push -t brewblox/brewblox-misc:spark-web-screen .",
     "serve": "vite preview"
   },
   "dependencies": {

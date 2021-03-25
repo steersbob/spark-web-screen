@@ -13,8 +13,8 @@ import {
 export default defineComponent({
   name: 'SparkDisplay',
   setup: () => {
-    const width = 320;
-    const height = 240;
+    const width = 480;
+    const height = 320;
 
     const connected = ref(false);
     const hostname = ref('localhost');
