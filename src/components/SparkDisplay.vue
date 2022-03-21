@@ -140,8 +140,10 @@ export default defineComponent({
 
     function handleScreenTouch(evt: MouseEvent) {
       const { x, y } = getMousePos(evt);
+      const canvas = viewport.value;
+      const rect = canvas?.getBoundingClientRect();
       if (connected.value && ws != null) {
-        console.log(`sending touch x=${x},y=${y},touchCount=${touchCount}`);
+        //console.log(`sending touch x=${x},y=${y},touchCount=${touchCount}`);
         const buf = new ArrayBuffer(5);
         const view = new DataView(buf);
         view.setInt8(0, touchCount ? 1 : 2); // command
@@ -157,7 +159,7 @@ export default defineComponent({
     function onMouseDown(evt: MouseEvent) {
       console.log(`mousedown button=${evt.button}`);
       if (evt.button === 0) {
-        touchCount += 1;
+        touchCount = 1;
         handleScreenTouch(evt);
       }
     }
@@ -165,7 +167,7 @@ export default defineComponent({
     function onMouseUp(evt: MouseEvent) {
       console.log(`mouseup button=${evt.button}`);
       if (evt.button === 0) {
-        touchCount -= 1;
+        touchCount = 0;
         handleScreenTouch(evt);
       }
     }
@@ -274,8 +276,8 @@ export default defineComponent({
 .view {
   display: block;
   margin: 0 auto;
-  width: 320px;
-  height: 240px;
+  width: 480px;
+  height: 320px;
 }
 .glass {
   background-color: rgba(255, 255, 255, 0.75);
